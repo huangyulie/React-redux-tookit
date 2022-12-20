@@ -1,7 +1,7 @@
 import { List, Avatar, Input, Button } from "@arco-design/web-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addList, deleteList } from "./todolistSlice";
+import { addList } from "./todolistSlice";
 
 function Todolist(this: any) {
   const [text, setText] = useState("");
@@ -46,10 +46,6 @@ function Todolist(this: any) {
         avatar: item,
       })
     );
-  };
-
-  const a = (e: any) => {
-    console.log(e);
   };
 
   const render = (actions: any, item: any, index: any) => {
