@@ -1,6 +1,7 @@
 # React-redux-tookit
 
 To Do List
+<<<<<<< HEAD
 
 ## 安装 redux toolkit 相关的包,样式方面选择 arco
 
@@ -200,3 +201,6 @@ export default Todolist;
 
 
 ```
+=======
+简单复习一下redux
+>>>>>>> cb29380d698f4641c4e510cda54585addbba46cd
