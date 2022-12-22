@@ -1,7 +1,7 @@
 import { List, Avatar, Input, Button } from "@arco-design/web-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addList } from "./todolistSlice";
+import { addList , changeList, deleteList } from "./todolistSlice";
 
 function Todolist(this: any) {
   const [text, setText] = useState("");
@@ -41,18 +41,27 @@ function Todolist(this: any) {
     const item = list[Math.floor(Math.random() * 7)];
     dispatch(
       addList({
-        id: 3,
+        id: Math.random(),
         thing: text,
         avatar: item,
       })
     );
   };
 
+  const changeListHandle = (props: any , options: number)=>{
+    if(options === 1)
+    dispatch(deleteList(props))
+    else
+    dispatch(changeList(props))
+  }
+
   const render = (actions: any, item: any, index: any) => {
-    console.log(actions);
-    
+    let action = [
+      // <span className="list-demo-actions-button" onClick={()=>changeListHandle(item,0)}>编辑</span>,
+      <span className="list-demo-actions-button" onClick={()=>changeListHandle(item,1)}>删除</span>,
+    ]
     return (
-      <List.Item key={index} actions={actions}>
+      <List.Item key={index} actions={action}>
         <List.Item.Meta
           avatar={<Avatar shape="square">{item.avatar}</Avatar>}
           description={item.thing}
@@ -60,21 +69,14 @@ function Todolist(this: any) {
       </List.Item>
     );
   };
+
   return (
     <>
       <List
         className="list-demo-actions"
         style={{ width: 700, margin: "10% auto" }}
         dataSource={dataSource}
-        render={render.bind(null, [
-          <span
-            className="list-demo-actions-button"
-            onClick={() => console.log(this)}
-          >
-            编辑
-          </span>,
-          <span className="list-demo-actions-button">删除</span>,
-        ])}
+        render={render.bind(null,[])}
       />
       <Input
         style={{ width: 350, marginLeft: "30%" }}

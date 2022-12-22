@@ -24,12 +24,19 @@ export const todolistSlice = createSlice({
     },
     deleteList: (state, action) => {
       state.list = state.list.filter((item)=>{
-        return item.id === action.payload;
+        return item.id !== action.payload.id;
       })
     },
+    changeList: (state, action) => {
+        state.list.forEach((item)=>{
+          if(item.id === action.payload.id){
+            item = {...action.payload};
+          }
+        })
+    }
   },
 });
 
-export const { addList , deleteList } = todolistSlice.actions;
+export const { addList , deleteList,changeList} = todolistSlice.actions;
 
 export default todolistSlice.reducer;
